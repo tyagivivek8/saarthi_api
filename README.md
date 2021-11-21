@@ -21,14 +21,14 @@ The API for Ice and Fire is working on /api/external-books/?name=<variable>
 The CRUD API is live on /api/v1/books/
   GET, POST, PATCH, DELETE methods are enabled.
 #GET Request
-  /api/v1/books/
+  GET /api/v1/books/
 You may also search using 
   /api/v1/books?name=<name>&country=<var>&publisher=<var>&year=<var>
   
   You may use any combination of parameters
   
 #POST Request
-  /api/v1/books/
+  POST /api/v1/books/
   
   JSON Body Format:
   
@@ -42,5 +42,15 @@ You may also search using
     "publisher": "Bantam Books",
     "country": "United States",
     "release_date": "1996-08-01"
-    }```
+    }
+```
+#UPDATE Request
+  PATCH /api/v1/books/<bookid>
+  Body with Same format as POST
 
+#DELETE Request
+  DELETE /api/v1/books/<bookid>
+
+  
+The API is also live at https://saarthiapi.herokuapp.com/api/v1/books/ (CRUD) and https://saarthiapi.herokuapp.com/api/external-books/ (IceandFire)
+Thank you for using the API!
