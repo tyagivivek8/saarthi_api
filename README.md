@@ -15,5 +15,32 @@ To make admin user
 Now run the app using
 >python manage.py runserver
 
-
+The API for Ice and Fire is working on /api/external-books/?name=<variable>
+  You can query it with the name of the books.
+  
+The CRUD API is live on /api/v1/books/
+  GET, POST, PATCH, DELETE methods are enabled.
+#GET Request
+  /api/v1/books/
+You may also search using 
+  /api/v1/books?name=<name>&country=<var>&publisher=<var>&year=<var>
+  
+  You may use any combination of parameters
+  
+#POST Request
+  /api/v1/books/
+  
+  JSON Body Format:
+  
+```  {
+    "name": "A Game of Thrones",
+    "isbn": "978-0553103540",
+    "authors": [
+      "George R. R. Martin"
+    ],
+    "number_of_pages": 694,
+    "publisher": "Bantam Books",
+    "country": "United States",
+    "release_date": "1996-08-01"
+    }```
 
