@@ -20,19 +20,20 @@ The API for Ice and Fire is working on /api/external-books/?name=<variable>
   
 The CRUD API is live on /api/v1/books/
   GET, POST, PATCH, DELETE methods are enabled.
-#GET Request
+# GET Request
   GET /api/v1/books/
 You may also search using 
   /api/v1/books?name=<name>&country=<var>&publisher=<var>&year=<var>
   
   You may use any combination of parameters
   
-#POST Request
+# POST Request
   POST /api/v1/books/
   
   JSON Body Format:
   
-```  {
+```  
+  {
     "name": "A Game of Thrones",
     "isbn": "978-0553103540",
     "authors": [
@@ -42,13 +43,13 @@ You may also search using
     "publisher": "Bantam Books",
     "country": "United States",
     "release_date": "1996-08-01"
-    }
+  }
 ```
-#UPDATE Request
+# UPDATE Request
   PATCH /api/v1/books/<bookid>
   Body with Same format as POST
 
-#DELETE Request
+# DELETE Request
   DELETE /api/v1/books/<bookid>
 
   
