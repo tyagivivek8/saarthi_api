@@ -6,4 +6,4 @@ class BookSerializer(serializers.ModelSerializer):
 	authors = serializers.SlugRelatedField(many = True, queryset=Author.objects.all(), slug_field ='name')
 	class Meta:
 		model = Book
-		fields = '__all__'
+		fields = ('name', 'isbn', 'authors', 'country', 'number_of_pages', 'publisher', 'release_date')
