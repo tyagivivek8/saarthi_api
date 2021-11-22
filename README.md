@@ -52,6 +52,40 @@ You may also search using
 # DELETE Request
   DELETE /api/v1/books/<bookid>
 
+# To deploy on Heroku
+  
+  Create a Heroku account and install the Heroku CLI
+
+  Now you may create a Heroku app with
+  >heroku create <app_name>
+
+  Set the SECRET_KEY and DEBUG_VALUE as environment variables in Heroku app
+  >heroku config:set SECRET_KEY=<your secret key>
+  >heroku config:set DEBUG_VALUE=False
+
+  To generate a secret key, open Python shell
+  >import secrets
+  >secrets.token_hex(24)
+
+  Use the generated secret key for production
+  Add "<app_name>.herokuapp.com" to ALLOWED_HOSTS
+
+  Now deploy the app to heroku
+  >git add -A
+  >git commit -m "message"
+  >git push heroku master
+
+  To create database and admin user on server
+  >heroku run python manage.py migrate
+  >heroku run bash
+
+  In the heroku bash use
+  >python manage.py createsuperuser
+
+  and create an admin account for the application
+  The admin panel is available at /admin route
+
+The app is now live at <app_name>.herokuapp.com
   
 The API is also live at https://saarthiapi.herokuapp.com/api/v1/books/ (CRUD) and https://saarthiapi.herokuapp.com/api/external-books/ (IceandFire)
 Thank you for using the API!
