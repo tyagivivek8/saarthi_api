@@ -32,7 +32,8 @@ You may also search using
   
   JSON Body Format:
   
-```  {
+```  
+  {
     "name": "A Game of Thrones",
     "isbn": "978-0553103540",
     "authors": [
@@ -42,7 +43,7 @@ You may also search using
     "publisher": "Bantam Books",
     "country": "United States",
     "release_date": "1996-08-01"
-    }
+  }
 ```
 # UPDATE Request
   PATCH /api/v1/books/<bookid>
