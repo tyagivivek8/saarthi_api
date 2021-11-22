@@ -13,13 +13,18 @@ class BookViewSet(viewsets.ModelViewSet):
 	http_method_names = ['get', 'post', 'patch', 'delete']
 
 	def create(self, request, *args, **kwargs):
+		"""
+			To handle POST requests and create entry in database efficiently
+		"""
 		validated_data = request.data
 		authors = validated_data.pop('authors')
 		book = Book(**validated_data)
 		try:
 			book.save()
-		except IntegrityError:
+		except IntegrityError: #Since books have unique ISBN, multiple entries not possible
 			return Response({'status_code': 500, 'status':'failed', 'message': 'Book already exists'})
+
+		# To iterate over authors and fetch/create them
 		for i in authors:
 			var = Author.objects.filter(name = i).first()
 			if var == None:
@@ -35,6 +40,9 @@ class BookViewSet(viewsets.ModelViewSet):
 		return Response(resp)
 
 	def retrieve(self, request, *args, **kwargs):
+		"""
+			To handle GET requests for specific book instance
+		"""
 		instance = self.queryset.get(pk=kwargs.get('pk'))
 		serializer = self.get_serializer(self.get_object())
 		resp = {
@@ -45,6 +53,9 @@ class BookViewSet(viewsets.ModelViewSet):
 		return Response(resp)
 
 	def list(self, request, *args, **kwargs):
+		"""
+			To handle GET requests and list books based on search parameters or list all books
+		"""
 		name = self.request.query_params.get('name')
 		country = self.request.query_params.get('country')
 		year = self.request.query_params.get('year')
@@ -68,6 +79,9 @@ class BookViewSet(viewsets.ModelViewSet):
 		return Response(resp)
 
 	def partial_update(self, request, *args, **kwargs):
+		"""
+			To handle PATCH requests
+		"""
 		instance = self.queryset.get(pk=kwargs.get('pk'))
 		serializer = self.serializer_class(instance, data=request.data, partial=True)
 		serializer.is_valid(raise_exception=True)
@@ -81,6 +95,9 @@ class BookViewSet(viewsets.ModelViewSet):
 		return Response(resp)
 
 	def destroy(self, request, *args, **kwargs):
+		"""
+			To handle DELETE requests
+		"""
 		instance = self.queryset.get(pk=kwargs.get('pk'))
 		serializer = self.get_serializer(self.get_object())
 		super().destroy(request,*args, **kwargs)
@@ -94,6 +111,9 @@ class BookViewSet(viewsets.ModelViewSet):
 
 
 def iceAndFire(request):
+	"""
+		View for handling requests to Ice and Fire API and returning customized response
+	"""
 	dat = requests.get("https://www.anapioficeandfire.com/api/books?name="+request.GET.get('name', ''))
 	dat = json.loads(dat.text)
 	resdat = []

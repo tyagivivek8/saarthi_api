@@ -7,7 +7,7 @@ class Author(models.Model):
 
 class Book(models.Model):
 	name = models.CharField(max_length=100)
-	isbn = models.CharField(unique=True, max_length=30)
+	isbn = models.CharField(unique=True, max_length=30) #isbn unique for each book
 	authors = models.ManyToManyField(Author)
 	country = models.CharField(max_length=30)
 	number_of_pages = models.IntegerField()
